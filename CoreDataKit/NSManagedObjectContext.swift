@@ -24,7 +24,7 @@ extension NSManagedObjectContext
     self.init(concurrencyType: .PrivateQueueConcurrencyType)
     performBlockAndWait { [unowned self] in
       self.persistentStoreCoordinator = persistentStoreCoordinator
-      self.undoManager = NSUndoManager()
+//      self.undoManager = NSUndoManager()
     }
     // Moved the obtainPermanentIDsForInsertedObjects() call into the save methods itself to prevent deadlock scenarios
     // See commit 3bc30e1c59e395cf5b8b157842c24cc7e49a9edb
@@ -76,9 +76,9 @@ extension NSManagedObjectContext
   */
   public func performBlock(block: PerformBlock, completionHandler: PerformBlockCompletionHandler? = nil) {
     performBlock {
-      self.undoManager?.beginUndoGrouping()
+//      self.undoManager?.beginUndoGrouping()
       let commitAction = block(self)
-      self.undoManager?.endUndoGrouping()
+//      self.undoManager?.endUndoGrouping()
 
       switch commitAction {
       case .DoNothing:
